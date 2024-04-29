@@ -11,7 +11,7 @@ This repository contains code to accompany the paper titled "Intracranial record
 
 `preprocessing_utils.py`: This script contains functions for preprocessing iEEG data
 
-`stats_utils.py`: This script contains functions for performing statistical analyses on model output
+`stats_utils.py`: This script contains functions for fitting FOOOF/eBOSC models and performing statistical analyses on the output.
 
 `plotting_utils.R`: This script contains functions for visualizing results. 
 
