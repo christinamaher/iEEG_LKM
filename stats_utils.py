@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd 
-from scipy.stats import wilcoxon, 
+from scipy.stats import wilcoxon
 
 def assign_band(frequency, bands):
     """
