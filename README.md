@@ -1,19 +1,14 @@
-This repository contains code to accompany the paper titled "Intracranial recordings reveal physiological correlates of loving-kindness meditation in amygdala and hippcampus of first-time meditators". IEEG data preprocessing, model fitting, and statistics were conducted in Python. Results were visualized in R. 
+This repository contains code to accompany the paper titled "Intracranial substrates of meditation-induced neuromodulation in amygdala and hippocampus". 
 
 **Model fitting and analysis**
 
 `analysis_nb.ipynb`: The notebook for preprocessing raw iEEG data, running FOOOF/eBOSC model fitting and evaluation, and performing statistical analyses of model output. 
-
-`visualization_nb.rmd`: The notebook for visualizing results. 
-
 
 **Helper functions**
 
 `preprocessing_utils.py`: This script contains functions for preprocessing iEEG data
 
 `stats_utils.py`: This script contains functions for fitting FOOOF/eBOSC models and performing statistical analyses on the output.
-
-`plotting_utils.R`: This script contains functions for visualizing results. 
 
 
 
