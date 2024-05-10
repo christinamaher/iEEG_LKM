@@ -31,48 +31,46 @@ def average_power(df):
     """
     # Get the frequency bands 
     freq_band_names = df['Freq_Band'].unique()
-    band_peaks = {band: [] for band in freq_band_names}
+    band_power = {band: [] for band in freq_band_names}
 
     # Get the peaks for each band 
     for band in freq_band_names:
         band_df = df[df['Freq_Band'] == band]
-        peaks = band_df['Peak'].tolist()
-        band_peaks[band] = peaks
+        power = band_df['power'].tolist()
+        band_power[band] = power
 
     # Average the peaks for each band
     avg_power = {}
-    for band, freqs in band_peaks.items():
-        avg_power[band] = sum(freqs) / len(freqs)
+    for band, power in band_power.items():
+        avg_power[band] = sum(power) / len(power)
 
     return avg_power
 
-def average_peaks(df):
+def peak_count(df,bands):
     """
-    Averages the peaks identified using FOOOF in each frequency band. If no peaks are found in a band, NaN is returned.
+    Gets a count for whether or not a peak was found by FOOOF model fit in a given frequency band. 
+    If at least one peak is found in a given band, 1 is returned. If no peaks are found in a given band, 0 is returned.
 
     Args:
         df (pd.DataFrame): a pandas DataFrame with columns 'Freq_Band' (str), 'Peak' (float)
+        bands (dic): a dictionary where keys are bands (str) and values are frequency ranges (tuple of int)
     
     Returns:
-        avg_peaks (dic): a dictionary where keys are bands (str) and values are the average peak (float). 
-
+        peak_count (dict): a dictionary where keys are bands (str) and values are the peak count (int). 
     """
-    # Get the frequency bands 
-    freq_band_names = df['Freq_Band'].unique()
-    band_peaks = {band: [] for band in freq_band_names}
+
+    # Initialize dictionary to store peak counts for each band
+    peak_count = {band: 0 for band in bands.keys()}
 
     # Get the peaks for each band 
-    for band in freq_band_names:
+    for band in bands.keys():
         band_df = df[df['Freq_Band'] == band]
-        peaks = band_df['Peak'].tolist()
-        band_peaks[band] = peaks
+        if len(band_df) >= 1:  # at least one peak is found within this band
+            peak_count[band] = 1
+        else:
+            peak_count[band] = 0 
 
-    # Average the peaks for each band
-    avg_peaks = {}
-    for band, freqs in band_peaks.items():
-        avg_peaks[band] = sum(freqs) / len(freqs)
-
-    return avg_peaks
+    return peak_count
 
 def average_duration(df):
     """

@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import pandas as pd 
 import mne 
@@ -33,3 +34,21 @@ def join_clean_segments(mne_data):
     
     return mne.concatenate_raws(good_segments) # concatenate good segments
     
+
+def load_label_file(subject,data_dir):
+    '''Method for loading file containing anatomical reconstruction information for a given subject.
+
+    Args:
+        subject (str): Subject ID for which to load the label file.
+        data_dir (str): Directory containing the label file.
+    
+    Returns:
+        labels (pd.DataFrame): DataFrame containing anatomical reconstruction information for the given subject.
+
+    '''
+
+    label_file_path = f"{data_dir}/labels/{subject}_labels.csv"  # Adjust the path according to your file structure
+    if os.path.exists(label_file_path):
+        return pd.read_csv(label_file_path)
+    else:
+        return None  # Handle case where label file doesn't exist
